@@ -8,7 +8,7 @@ function mergeSort(arr) {
     let right = arr.slice(mid, arr.length);
     mergeSort(left);
     mergeSort(right);
-    return merge(left, right, mid);
+    return merge(mergeSort(left), mergeSort(right));
   }
 }
 
@@ -23,7 +23,7 @@ function merge(left, right, mid) {
     else if (left[i] > right[j]) {
       newArr.push(right[j++]);
     }
-    else if (left[i] === right[i]) {
+    else if (left[i] === right[j]) {
       newArr.push(left[i++]);
       newArr.push(right[j++]);
     }
@@ -33,7 +33,7 @@ function merge(left, right, mid) {
       newArr.push(right[j++]);
     }
   }
-  else {
+  else if (j === right.length & i < left.length) {
     while (i < left.length) {
       newArr.push(left[i++]);
     }
@@ -41,5 +41,14 @@ function merge(left, right, mid) {
   return newArr;
 }
 
+function createRandomArr(length, max) {
+  let randomArr = [];
+  for (i = 0; i < length; i++) {
+    randomArr.push(Math.ceil(Math.random() * max));
+  }
+  return randomArr;
+}
 
-console.log(mergeSort([1, 3, 2, 5]))
+let testArr = createRandomArr(50, 100);
+console.log(testArr)
+console.log(mergeSort(testArr));
