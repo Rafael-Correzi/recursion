@@ -6,8 +6,6 @@ function mergeSort(arr) {
     let mid = arr.length / 2;
     let left = arr.slice(0, mid);
     let right = arr.slice(mid, arr.length);
-    mergeSort(left);
-    mergeSort(right);
     return merge(mergeSort(left), mergeSort(right));
   }
 }
