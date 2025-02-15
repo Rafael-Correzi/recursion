@@ -20,9 +20,14 @@ function fibs(num) {
 
 console.log(fibs(10));
 
-/*function fibsRec(num) {
-  if (num === 1 || num === 2) {
-    return 1;
+function fibsRec(num) {
+  if (num === 1) {
+    return [0];
   }
-  else
-}*/
+  if (num === 2) {
+    return fibsRec(num - 1).concat([1]);
+  }
+  else return fibsRec(num - 1).concat([fibsRec(num - 2).pop() + fibsRec(num - 1).pop()]);
+}
+
+console.log(fibsRec(10));
